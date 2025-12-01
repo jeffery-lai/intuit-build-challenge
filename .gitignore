@@ -1,0 +1,8 @@
+# Ignore all Python and test cache files
+__pycache__/
+.pytest_cache/
+*.pyc
+*.pyo
+
+venv/
+.venv/
