@@ -1,6 +1,25 @@
 # Intuit Build Challenge
 All Python code lives under the top-level `src` directory, and corresponding tests live under the `tests` directory
 
+## Setup
+
+### 1. Create and activate a virtual environment
+
+From the project root:
+
+`python3 -m venv .venv`
+
+Activate it:
+
+macOS / Linux:
+`source .venv/bin/activate`
+Windows (PowerShell):
+`.venv\Scripts\Activate.ps1`
+
+2. Install dependencies
+With the virtual environment activated, install the required packages:
+`pip install -r requirements.txt`
+
 ## Assignment 1: producer_consumer
 
 ### Description
@@ -9,7 +28,7 @@ This module implements a classic producer–consumer pattern with a fixed-capaci
 - The `BlockingBuffer` class implements a bounded queue with thread synchronization.
   - If the buffer is full, calls to `put()` block the producer until space is available.
   - If the buffer is empty, calls to `take()` block the consumer until an item is available.
-  - Synchronization is implemented using Python’s `threading.Condition` (wait/notify mechanism).
+  - Synchronization is implemented using Python’s `threading.Condition` (Mutex + wait/notify mechanism).
 
 - The `Producer` and `Consumer` classes are built on top of the `threading.Thread` API and operate concurrently on the shared buffer:
   - `Producer` reads from a source container and puts items into the buffer.
@@ -44,6 +63,11 @@ A dataset was generated with consideration of the following guidelines:
 - Represents a common business use case with meaningful product categories.
 - Includes multiple regions, products, and categories.
 - Uses simple, human-readable types so that the focus stays on functional/stream-style processing rather than handling edge cases.
+
+Design elements:
+- csv.DictReader and load_sales form a lazy record stream.
+- Analytics methods use generator expressions and functions (sum, max, etc.) instead of manual looping.
+- Lamdbas are used for grouping and sorting.
 
 ### Running code on dataset
 1. Navigate into the `src` directory

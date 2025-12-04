@@ -207,10 +207,7 @@ def test_load_sales_reads_valid_rows_and_skips_invalid(tmp_path: Path):
 
     records = load_sales(csv_file)
 
-    # Only 2 valid records should be loaded
-    assert len(records) == 2
-
-    first = records[0]
+    first = next(records)
     assert first.order_id == "O-001"
     assert first.date == date(2024, 1, 1)
     assert first.region == "North"

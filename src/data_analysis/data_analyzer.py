@@ -37,7 +37,7 @@ def load_sales(csv_path: Path) -> List[SalesRecord]:
 
         for row in reader:
             try:
-                record = SalesRecord(
+                yield SalesRecord(
                     order_id=row["order_id"],
                     date=date.fromisoformat(row["date"]),
                     region=row["region"],
@@ -46,7 +46,6 @@ def load_sales(csv_path: Path) -> List[SalesRecord]:
                     quantity=int(row["quantity"]),
                     unit_price=float(row["unit_price"]),
                 )
-                records.append(record)
             except Exception as e:
                 print(f"Skipping malformed row {row}: {e}")
 

@@ -14,8 +14,6 @@ def main() -> None:
     records = load_sales(csv_path)
     analyzer = SalesDataAnalyzer(records)
 
-    print(f"Loaded {len(records)} records.\n")
-
     # 1. Total revenue
     print(f"Total revenue: {analyzer.total_revenue():.2f}\n")
 
